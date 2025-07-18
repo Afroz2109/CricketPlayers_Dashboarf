@@ -4,12 +4,11 @@ let updatingID = null;
 const createNoteButton = document.querySelector('.createNoteButton');
 const duplicateLists = document.querySelector('.notes');
 
-const BASE_URL = "https://cricketplayers-dashboarf.onrender.com";
 
 async function renderElementsToScreen() {
     duplicateLists.innerHTML = '';
     try {
-        const response = await axios.get(`${BASE_URL}/api/v1/players/get-players`);
+        const response = await axios.get(`https://cricketplayers-dashboarf.onrender.com/api/v1/players/get-players`);
         const players = response.data.data;
 
         if (Array.isArray(players)) {
@@ -40,11 +39,11 @@ createNoteButton.addEventListener('click', async () => {
 
     try {
         if (updatingID) {
-            await axios.put(`${https://cricketplayers-dashboarf.onrender.com}/api/v1/players/update-player/${updatingID}`, body);
+            await axios.put(`https://cricketplayers-dashboarf.onrender.com/api/v1/players/update-player/${updatingID}`, body);
             updatingID = null;
             createNoteButton.innerText = 'Submit';
         } else {
-            await axios.post(`${https://cricketplayers-dashboarf.onrender.com}/api/v1/players/add-players`, body);
+            await axios.post(`https://cricketplayers-dashboarf.onrender.com/api/v1/players/add-players`, body);
         }
 
         clearForm();
@@ -86,8 +85,8 @@ function renderNoteList(note, uniqueID) {
 
 async function removeElementsfromNotes(id) {
     try {
-        await axios.delete(`${https://cricketplayers-dashboarf.onrender.com}/api/v1/players/delete-player/${id}`);
-        await renderElementsToScreen(); // ✅ Don't use manual `.remove()`
+        await axios.delete(`https://cricketplayers-dashboarf.onrender.com/api/v1/players/delete-player/${id}`);
+        await renderElementsToScreen(); 
     } catch (error) {
         console.error("Error deleting player:", error);
     }
