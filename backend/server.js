@@ -8,7 +8,12 @@ const app = express();
 
 const mongoose = require('mongoose');
 
+const cors = require("cors");
+app.use(cors());
 
+app.use(cors({
+  origin: "https://cricketplayers-dashboarf-1.onrender.com/"
+}));
 // Middleware for JSON body parsing
 app.use(express.json());
 
