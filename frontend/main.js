@@ -7,7 +7,7 @@ const duplicateLists = document.querySelector('.notes');
 async function renderElementsToScreen() {
     duplicateLists.innerHTML = '';
     try {
-        const response = await axios.get('http://localhost:9210/api/v1/players/get-players');
+        const response = await axios.get('axios.get("https://cricketplayers-dashboarf-1.onrender.com/api/v1/players/get-players');
         const players = response.data.data;
 
         if (Array.isArray(players)) {
