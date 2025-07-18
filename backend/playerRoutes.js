@@ -1,15 +1,15 @@
 const express = require('express');
 const {
   getPlayers,
-  addPlayer,
+  addPlayers,
   updatePlayer,
   deletePlayer
-} = require('../controllers/playerController'); // Adjust the path if needed
+} = require('../controllers/playerController');
 
 const playerRouter = express.Router();
 
 playerRouter.get('/get-players', getPlayers);
-playerRouter.post('/add-players', addPlayer);
+playerRouter.post('/add-players', addPlayers);
 playerRouter.put('/update-player/:id', updatePlayer);
 playerRouter.delete('/delete-player/:id', deletePlayer);
 
