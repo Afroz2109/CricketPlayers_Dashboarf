@@ -28,7 +28,7 @@ createNoteButton.addEventListener('click', async () => {
     const phone = document.getElementById('phone').value;
     const role = document.getElementById('role').value;
     const availableInput = document.querySelector('input[name="available"]:checked');
-    const available = availableInput ? availableInput.value : "";
+    const available = availableInput ? availableInput.value === "Yes" : false;
 
     if (!first_name || !last_name || !email || !phone || !role || !available) {
         console.error("All fields are required.");
@@ -47,7 +47,7 @@ createNoteButton.addEventListener('click', async () => {
         }
 
         clearForm();
-        await renderElementsToScreen(); // ✅ Only once here
+        await renderElementsToScreen();
     } catch (error) {
         console.error("Error saving player:", error);
     }
