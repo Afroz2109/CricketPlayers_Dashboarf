@@ -4,10 +4,13 @@ let updatingID = null;
 const createNoteButton = document.querySelector('.createNoteButton');
 const duplicateLists = document.querySelector('.notes');
 
+// ✅ Set your backend Render URL here
+const BASE_URL = "https://cricketplayers-dashboarf-1.onrender.com";
+
 async function renderElementsToScreen() {
     duplicateLists.innerHTML = '';
     try {
-        const response = await axios.get('axios.get("https://cricketplayers-dashboarf-1.onrender.com/api/v1/players/get-players');
+        const response = await axios.get(`${BASE_URL}/api/v1/players/get-players`);
         const players = response.data.data;
 
         if (Array.isArray(players)) {
@@ -38,11 +41,11 @@ createNoteButton.addEventListener('click', async () => {
 
     try {
         if (updatingID) {
-            await axios.put(`http://localhost:9210/api/v1/players/update-player/${updatingID}`, body);
+            await axios.put(`${BASE_URL}/api/v1/players/update-player/${updatingID}`, body);
             updatingID = null;
             createNoteButton.innerText = 'Submit';
         } else {
-            await axios.post('http://localhost:9210/api/v1/players/add-players', body);
+            await axios.post(`${BASE_URL}/api/v1/players/add-players`, body);
         }
 
         clearForm();
@@ -84,7 +87,7 @@ function renderNoteList(note, uniqueID) {
 
 async function removeElementsfromNotes(id) {
     try {
-        await axios.delete(`http://localhost:9210/api/v1/players/delete-player/${id}`);
+        await axios.delete(`${BASE_URL}/api/v1/players/delete-player/${id}`);
         await renderElementsToScreen(); // ✅ Don't use manual `.remove()`
     } catch (error) {
         console.error("Error deleting player:", error);
@@ -97,7 +100,7 @@ function updatePlayers(uniqueID, note) {
     document.getElementById('email').value = note.email;
     document.getElementById('phone').value = note.phone;
     document.getElementById('role').value = note.role;
-    document.getElementById(note.available ? 'role-yes' : 'role-no').checked = true;
+    document.getElementById(note.available === "Yes" ? 'role-yes' : 'role-no').checked = true;
 
     updatingID = uniqueID;
     createNoteButton.innerText = 'Update';
