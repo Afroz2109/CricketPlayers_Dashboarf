@@ -13,6 +13,9 @@ app.use(cors({
   ]
 }));
 
+const playerRoutes = require('./routes/playerRoutes');
+app.use('/api/v1/players', playerRoutes);
+
 //  Middleware to parse JSON
 app.use(express.json());
 
