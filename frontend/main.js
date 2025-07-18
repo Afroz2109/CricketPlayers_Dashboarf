@@ -28,8 +28,9 @@ createNoteButton.addEventListener('click', async () => {
     const phone = document.getElementById('phone').value;
     const role = document.getElementById('role').value;
     const availableInput = document.querySelector('input[name="available"]:checked');
-    const available = availableInput ? availableInput.value === "Yes" : false;
+    const available = availableInput?.value === "Yes"; 
 
+const body = { first_name, last_name, email, phone, role, available };
     if (!first_name || !last_name || !email || !phone || !role || !available) {
         console.error("All fields are required.");
         return;
